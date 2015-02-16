@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = PianobarNotify::VERSION
   spec.authors       = ["Juan C. Müller"]
   spec.email         = ["jcmuller@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Pianobar event_command driver}
+  spec.homepage      = "https://github.com/jcmuller/pianobar_notify"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -29,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov"
 
   spec.add_runtime_dependency "libnotify"
+  spec.add_runtime_dependency "mini_magick"
 end
