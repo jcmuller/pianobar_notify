@@ -1,5 +1,7 @@
 # PianobarNotify
 
+[![Build Status](https://travis-ci.org/jcmuller/pianobar_notify.svg?branch=master)](https://travis-ci.org/jcmuller/pianobar_notify)
+
 TODO: Write a gem description
 
 ## Installation
