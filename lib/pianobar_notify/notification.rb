@@ -1,3 +1,5 @@
+require 'erb'
+
 module PianobarNotify
   class Notification
     def call
@@ -43,11 +45,19 @@ module PianobarNotify
       end
 
       def body
-        "#{blob.artist} - #{blob.title}\n" <<
-        "#{blob.album}\n" <<
-        "On: #{blob.station_name}".tap do |b|
-          b << "\nThumbs Up" if blob.thumbs_up?
-        end
+        ERB.new(body_template, nil, "-").result(binding)
+      end
+
+      def body_template
+        File.read(template_name)
+      end
+
+      def template_name
+        File.expand_path(
+          File.join(
+            File.dirname(__FILE__), "..", "..", "templates", "notification", "body.erb"
+          )
+        )
       end
 
       def cover

@@ -8,7 +8,7 @@ module PianobarNotify
   autoload :Stations,     'pianobar_notify/stations'
   autoload :VERSION,      'pianobar_notify/version'
 
-  COVER_PATH = File.join(ENV.fetch("HOME"), ".cache/pianobar-notify")
+  COVER_PATH = File.join(ENV.fetch("HOME"), ".cache/pianobar_notify")
 
   Libnotify.icon_dirs << COVER_PATH
 end

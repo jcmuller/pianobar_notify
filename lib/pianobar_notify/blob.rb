@@ -5,12 +5,12 @@ module PianobarNotify
   class Blob < OpenStruct
     include Singleton
 
-    def initialize
-      super
-      self.action = ARGV[0]
-      STDIN.each_line do |line|
-        key, value = line.chomp.split("=")
-        self.send(:"#{cleanup_key(key)}=", value)
+    def initialize(hash = nil)
+      if hash.nil?
+        super
+        initialize_from_stdin
+      else
+        super(hash)
       end
     end
 
@@ -23,6 +23,14 @@ module PianobarNotify
     end
 
     private
+
+      def initialize_from_stdin
+        self.action = ARGV[0]
+        STDIN.each_line do |line|
+          key, value = line.chomp.split("=")
+          self.send(:"#{cleanup_key(key)}=", value)
+        end
+      end
 
       def cleanup_key(key)
         key.gsub(/(.)([A-Z])/,'\1_\2').downcase

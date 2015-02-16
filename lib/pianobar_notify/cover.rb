@@ -14,7 +14,11 @@ module PianobarNotify
     attr_reader :temp_image
 
       def confirm_it_exists
-        download_and_convert unless File.exists?(image_path)
+        download_and_convert if should_download?
+      end
+
+      def should_download?
+        !File.exists?(image_path) && !blob.cover_art.nil?
       end
 
       def download_and_convert
@@ -37,6 +41,9 @@ module PianobarNotify
         image.resize "72x72"
         image.format "png"
         image.write image_path
+      rescue Errno::ENOENT
+        FileUtils.mkdir_p(COVER_PATH)
+        retry
       end
 
       def image_path
@@ -47,7 +54,7 @@ module PianobarNotify
         @image_name ||= [
           blob.artist,
           blob.album
-        ].join("-").gsub(/ /, "_").gsub(%r{/?.}, "").downcase << ".png"
+        ].join(" - ").gsub(%r{[/\?.&]}, "") << ".png"
       end
 
       def blob
