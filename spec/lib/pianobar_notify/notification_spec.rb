@@ -14,6 +14,12 @@ RSpec.describe PianobarNotify::Notification do
   end
 
   describe "body" do
-    its(:body) { should eq "Some Artist - Some Title\nSome Album\nOn: Some Station Radio\nThumbs Up\n" }
+    its(:body) { should eq(<<-EOF) }
+Some Title
+By Some Artist
+<i>On: Some Album</i>
+<i>Station: Some Station Radio</i>
+Thumbs Up
+EOF
   end
 end

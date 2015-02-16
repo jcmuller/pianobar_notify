@@ -10,13 +10,13 @@ module PianobarNotify
 
       def notify
         Libnotify.show do |notify|
-          notify.summary    = summary
-          notify.body       = body
-          notify.timeout    = 10
-          notify.urgency    = :normal
-          notify.append     = false
-          notify.transient  = true
-          notify.icon_path  = cover.path
+          notify.app_name  = "Pianobar"
+          notify.summary   = summary
+          notify.body      = body
+          notify.timeout   = 10
+          notify.append    = false
+          notify.transient = true
+          notify.icon_path = cover.path
         end
       end
 

@@ -1,6 +1,7 @@
-<%= blob.artist %> - <%= blob.title %>
-<%= blob.album %>
-On: <%= blob.station_name %>
+<%= blob.title %>
+By <%= blob.artist %>
+<i>On: <%= blob.album %></i>
+<i>Station: <%= blob.station_name %></i>
 <% if blob.thumbs_up? -%>
 Thumbs Up
 <% end -%>
