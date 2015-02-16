@@ -2,6 +2,9 @@ require 'rspec'
 require 'rspec/its'
 require 'simplecov'
 require 'pianobar_notify'
+require "codeclimate-test-reporter"
+
+CodeClimate::TestReporter.start
 
 SimpleCov.start do
   add_filter "vendor/bundler_gems" # Ignore gems

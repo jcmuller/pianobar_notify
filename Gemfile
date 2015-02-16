@@ -5,7 +5,8 @@ gemspec
 
 group :test do
   gem "rake"
-  gem "rspec",             :require => false
-  gem "rspec-its",         :require => false
-  gem "simplecov",         :require => false
+  gem "rspec",                     :require => false
+  gem "rspec-its",                 :require => false
+  gem "simplecov",                 :require => false
+  gem "codeclimate-test-reporter", :require => false
 end
