@@ -11,7 +11,10 @@ module PianobarNotify
 
     private
 
-    attr_reader :temp_image
+      IMAGE_FORMAT = "png"
+      IMAGE_SIZE   = "96x96"
+
+      attr_reader :temp_image
 
       def confirm_it_exists
         download_and_convert if should_download?
@@ -38,8 +41,8 @@ module PianobarNotify
 
       def convert
         image = MiniMagick::Image.open(tempfile.path)
-        image.resize "72x72"
-        image.format "png"
+        image.resize IMAGE_SIZE
+        image.format IMAGE_FORMAT
         image.write image_path
       rescue Errno::ENOENT
         FileUtils.mkdir_p(COVER_PATH)
@@ -52,9 +55,12 @@ module PianobarNotify
 
       def image_name
         @image_name ||= [
-          blob.artist,
-          blob.album
-        ].join(" - ").gsub(%r{[/\?.&]}, "") << ".png"
+          [
+            blob.artist,
+            blob.album
+          ].join(" - ").gsub(%r{[/\?.&]}, ""),
+          IMAGE_FORMAT
+        ].join(".")
       end
 
       def blob
