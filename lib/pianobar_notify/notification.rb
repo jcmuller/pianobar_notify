@@ -45,7 +45,7 @@ module PianobarNotify
       end
 
       def body
-        ERB.new(body_template, nil, "-").result(binding)
+        ERB.new(body_template, nil, "-").result(binding).gsub(/&/, "&amp;")
       end
 
       def body_template
